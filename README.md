@@ -1,1 +1,1 @@
-# clubManagementAppSpring
+# clubManagementAppSpringBoot
