@@ -36,7 +36,7 @@ VALUES ("anas@esi.com", "elka", "m", "elkace", "admin", "13456", "2023", "069045
 -- ---------------------------------------------------------------------------------------------
 
 ALTER TABLE t_member
-ADD member_type ENUM('member', 'admin', 'superAdmin');
+ADD member_type ENUM('memberDto', 'admin', 'superAdmin');
 -- --------------------------------------------------------------------------- --
 -- - Construction de la table cellule                                     - --
 -- --------------------------------------------------------------------------- --
