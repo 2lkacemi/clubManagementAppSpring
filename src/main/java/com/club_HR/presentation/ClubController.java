@@ -39,13 +39,23 @@ public class ClubController {
     @GetMapping("/allMembers")
     public String listAllMembers(Model model) {
         model.addAttribute("members", iMemberService.getAllMembers());
-        return "allMembers";
+        return "allMembersDashPage";
     }
 
     @GetMapping("/allCells")
     public String listAllCells(Model model) {
         model.addAttribute("cells", iCellService.getAllCells());
-        return "allCells";
+        return "allCellsDashPage";
+    }
+
+    @GetMapping("/addMember")
+    public String addMember(){
+        return "addMemberDashPage";
+    }
+
+    @GetMapping("/addCell")
+    public String addCell(){
+        return "addCellDashPage";
     }
 
     @GetMapping("/{email}")
