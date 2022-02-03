@@ -32,9 +32,10 @@ public class CellServiceImpl implements ICellService{
     }
 
     @Override
-    public void addCell(CellDto cellDto) {
+    public CellDto addCell(CellDto cellDto) {
         cellDto.setCellRef("code_" + cellDto.getCellName().substring(0,4));
         this.iCellDao.save(cellMapper.mapToCellEntity(cellDto));
+        return cellDto;
     }
 
     @Override

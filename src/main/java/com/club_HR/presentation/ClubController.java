@@ -3,7 +3,9 @@ package com.club_HR.presentation;
 
 import com.club_HR.business.ICellService;
 import com.club_HR.business.IMemberService;
+import com.club_HR.business.dto.CellDto;
 import com.club_HR.business.dto.MemberDto;
+import com.club_HR.presentation.dto.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -69,16 +71,15 @@ public class ClubController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<MemberDto> create(@RequestBody MemberDto member) throws URISyntaxException {
-        MemberDto createdMember = iMemberService.addMember(member);
+    public String addMember(@RequestBody MemberDto member){
+        iMemberService.addMember(member);
+        return "redirect:allMembers";
+    }
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{email}")
-                .buildAndExpand(createdMember.getEmail())
-                .toUri();
-
-        return ResponseEntity.created(uri)
-                .body(createdMember);
+    @PostMapping("/addCell")
+    public String addCell(@ModelAttribute(name = "cell") CellDto cell){
+        iCellService.addCell(cell);
+        return "redirect:allCells";
     }
 
     @PutMapping("/{email}")

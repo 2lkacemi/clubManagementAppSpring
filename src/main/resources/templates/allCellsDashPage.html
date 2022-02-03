@@ -97,6 +97,7 @@
                                         <th scope="col">Cell's Ref</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Description</th>
+                                        <th scope="col">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -104,6 +105,16 @@
                                         <td th:text="${cell.cellRef}"></td>
                                         <td th:text="${cell.cellName}">cell</td>
                                         <td th:text="${cell.cellDescription}"></td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-primary my-1 my-sm-0">
+                                                <span class="fas fa-edit"></span>
+                                                Edit
+                                            </a>
+                                            <a href="#" class="btn btn-sm btn-danger my-1 my-sm-0">
+                                                <span class="fas fa-trash"></span>
+                                                Delete
+                                            </a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -37,7 +37,6 @@
             <h1 class="display-2">Logi<span class="vim-caret">n</span></h1>
             <div class="lead mb-3 text-mono text-success">Login to your account </div>
             <form th:action="@{/login}" th:object="${loginForm}" method="post">
-<!--              <p th:if="${error}" class="error">UserName & Password Incorrect</p>-->
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp"

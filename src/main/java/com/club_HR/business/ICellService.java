@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ICellService {
 
-     void addCell(CellDto cellDto);
+     CellDto addCell(CellDto cellDto);
      void deleteCellByCellRef(String cellRef);
      List<CellDto> getAllCells();
      void addMemberToCell(String email, String cellRef);

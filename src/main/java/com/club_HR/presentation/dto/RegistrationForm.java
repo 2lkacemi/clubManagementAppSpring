@@ -2,7 +2,7 @@ package com.club_HR.presentation.dto;
 
 import com.club_HR.business.enums.Gender;
 
-public class MemberDetailForm {
+public class RegistrationForm {
     private String firstName;
     private String lastName;
     private String email;
@@ -12,7 +12,7 @@ public class MemberDetailForm {
     private Gender gender;
     private String promo;
 
-    public MemberDetailForm() {
+    public RegistrationForm() {
     }
 
     public String getFirstName() {

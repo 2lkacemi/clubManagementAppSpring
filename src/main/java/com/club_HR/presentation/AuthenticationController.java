@@ -2,12 +2,16 @@ package com.club_HR.presentation;
 
 import com.club_HR.business.IMemberService;
 import com.club_HR.business.dto.MemberDto;
+import com.club_HR.business.enums.Gender;
 import com.club_HR.presentation.dto.LoginForm;
+import com.club_HR.presentation.dto.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.Registration;
 
 @Controller
 public class AuthenticationController {
@@ -21,20 +25,6 @@ public class AuthenticationController {
 
 
     //Check for Credentials
-//    @PostMapping("/login")
-//    public String login(@ModelAttribute(name = "memberLoginForm") MemberLoginForm memberLoginForm, Model m) {
-//        String email = memberLoginForm.getEmail();
-//        String pass = memberLoginForm.getPassword();
-//        if (email.equals("Admin@gmail.com") && pass.equals("Admin@123")) {
-//            m.addAttribute("email", email);
-//            m.addAttribute("pass", pass);
-//            return "homeDashPage";
-//        }
-//        m.addAttribute("error", "Incorrect Username & Password");
-//        return "loginPage";
-//
-//    }
-
     @PostMapping(value = {"/login"})
     public String login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model) {
 
@@ -49,5 +39,23 @@ public class AuthenticationController {
             }
         }
         return "redirect:login";
+    }
+
+    @PostMapping(value = {"/registration"})
+    public String registration(@ModelAttribute(name = "member") MemberDto member) {
+//        String firstName = registrationForm.getFirstName();
+//        String lastName = registrationForm.getLastName();
+//        String promo = registrationForm.getPromo();
+//        Gender gender = registrationForm.getGender();
+//        String password = registrationForm.getPassword();
+        String email = member.getEmail();
+        MemberDto memberFound = iMemberService.getMemberByEmail(email);
+        if (memberFound != null) {
+            return "redirect:login";
+        }
+        else{
+            iMemberService.addMember(member);
+            return "redirect:login";
+        }
     }
 }
