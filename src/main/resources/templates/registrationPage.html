@@ -35,17 +35,17 @@
     <div class="lead mb-3 text-mono text-success">Create your own account </div>
     <div class="row py-4">
         <div class="col-md-8 order-md-1">
-            <form  class="needs-validation" th:action="@{/registration}" th:object="${member}" method="post" novalidate>
+            <form  class="needs-validation" th:action="@{/registration}" th:object="${member}" method="post" >
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Saad"  required>
+                        <label for="firstName">First name<span class="text-muted">*</span></label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Saad" required>
                         <div class="invalid-feedback">
                             Valid first name is required.
                         </div>
                     </div>
                     <div class="col-md-6 mb-3" >
-                        <label for="lastName">Last name</label>
+                        <label for="lastName">Last name<span class="text-muted">*</span></label>
                         <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Dahmani"  required>
                         <div class="invalid-feedback">
                             Valid last name is required.
@@ -53,47 +53,40 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="email">Email <span class="text-muted"></span></label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="you@example.com"  required>
-                    <div class="invalid-feedback">
-                        Please enter a valid email address .
-                    </div>
+                    <label for="email">Email address<span class="text-muted">*</span>
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                               placeholder="Enter email" th:field="*{email}" required>
+                    </label>
                 </div>
                 <div class="mb-3">
-                    <label for="cc-number">Phone Number</label>
+                    <label for="cc-number">Phone Number<span class="text-muted">*</span></label>
                     <input type="text" class="form-control" id="cc-number" name="tel" placeholder="0690457173"  required>
-                    <div class="invalid-feedback">
-                        Please enter your phone number .
-                    </div>
+
                 </div>
 
                 <div class="mb-3">
-                    <label for="example-password-input">Password <span class="text-muted"></span></label>
-                    <input class="form-control" type="password" name="password" value="hunter2" id="example-password-input" >
+                    <label for="example-password-input">Password<span class="text-muted">*</span><span class="text-muted"></span></label>
+                    <input class="form-control" type="password" name="password" value="hunter2" id="example-password-input" required >
                 </div>
                 <div class="mb-3">
-                    <label for="example-password-input">Confirm Password <span class="text-muted"></span></label>
-                    <input class="form-control" type="password" value="hunter2"  >
+                    <label for="example-password-input">Confirm Password<span class="text-muted">*</span><span class="text-muted"></span></label>
+                    <input class="form-control" type="password" value="hunter2" required >
                 </div>
                 <div class="row">
                     <div class="col-md-2 mb-3">
-                        <label for="country">Gender</label>
+                        <label>Gender<span class="text-muted">*</span></label>
                         <div class="custom-control custom-radio">
-                            <input id="credit" name="gender1" type="radio" th:field="*{gender}" value="male" class="custom-control-input" checked required>
-                            <label class="custom-control-label" for="credit">Male</label>
+                            <input id="credit" name="gender" type="radio" value="M" class="custom-control-input" checked required>
+                            <label class="custom-control-label" for="credit" >M</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input id="debit" name="gender2" type="radio" th:field="*{gender}" value="female" class="custom-control-input" required>
-                            <label class="custom-control-label" for="debit">Female</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="paypal" name="gender3" type="radio" th:field="*{gender}" value="other" class="custom-control-input" required>
-                            <label class="custom-control-label" for="paypal">Other</label>
+                            <input id="debit" name="gender" type="radio" value="F" class="custom-control-input" required>
+                            <label class="custom-control-label" for="debit" >F</label>
                         </div>
                     </div>
                     <div class="col-md-5 mb-3">
-                        <label for="country">City</label>
-                        <select class="custom-select d-block w-100" id="country"  required>
+                        <label for="country">City<span class="text-muted">(Optional)</span></label>
+                        <select class="custom-select d-block w-100" id="country" >
                             <option value="">Choose...</option>
                             <option>Casablanca</option>
                             <option>Rabat</option>
@@ -101,24 +94,14 @@
                             <option>Kenitra</option>
                             <option>Other</option>
                         </select>
-                        <div class="invalid-feedback">
-                            Please select a valid country.
-                        </div>
                     </div>
                     <div class="col-md-5 mb-3">
-                        <label for="state" >Promo</label>
-                        <select class="custom-select d-block w-100" id="state" required>
+                        <label for="promo" >Promo<span class="text-muted">(Optional)</span></label>
+                        <select class="custom-select d-block w-100" id="promo" name="promo">
                             <option value="">Choose...</option>
                             <option>2017</option>
                             <option>2018</option>
                             <option>2019</option>
-                            <option>2020</option>
-                            <option>2021</option>
-                            <option>2022</option>
-                            <option>2023</option>
-                            <option>2024</option>
-                            <option>2025</option>
-                            <option>2026</option>
                         </select>
                         <div class="invalid-feedback">
                             Please provide a valid number.

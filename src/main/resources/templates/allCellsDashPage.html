@@ -89,6 +89,10 @@
                                     <i class="fas fa-table"></i>
                                 </div>
                                 <div class="spur-card-title"> Cell's table</div>
+                                <a th:href="@{/dash/addCell}" class="btn btn-secondary mb-1 ml-md-auto">
+                                    <span class="fas fa-plus"></span>
+                                    <span class="btn-icon-label">Create New</span>
+                                </a>
                             </div>
                             <div class="card-body ">
                                 <table class="table table-in-card">
@@ -106,11 +110,11 @@
                                         <td th:text="${cell.cellName}">cell</td>
                                         <td th:text="${cell.cellDescription}"></td>
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-primary my-1 my-sm-0">
+                                            <a th:href="@{updateCell(cellRef=${cell.cellRef})}" class="btn btn-sm btn-primary my-1 my-sm-0">
                                                 <span class="fas fa-edit"></span>
                                                 Edit
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-danger my-1 my-sm-0">
+                                            <a th:href="@{deleteCell(cellRef=${cell.cellRef})}" class="btn btn-sm btn-danger my-1 my-sm-0">
                                                 <span class="fas fa-trash"></span>
                                                 Delete
                                             </a>
@@ -122,9 +126,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-        </main>    </div>
+        </main>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

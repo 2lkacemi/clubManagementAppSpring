@@ -12,15 +12,5 @@ public class MainController {
         return "homePage";
     }
 
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "loginPage";
-    }
-
-    @GetMapping("/registration")
-    public String showRegistrationForm() {
-        return "registrationPage";
-    }
-
 
 }

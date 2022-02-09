@@ -51,14 +51,12 @@ public class MemberServiceImpl implements IMemberService {//on va faire le coupl
 
     @Override
     public void removeMemberByEmail(String email) {
-        MemberDto memberFound = getMemberByEmail(email);
-        if (memberFound != null){
-            iMemberDao.deleteMemberEntityByEmail(memberMapper.mapToMemberEntity(memberFound).getEmail());
-        }
+            iMemberDao.deleteByEmail(email);
     }
 
     @Override
     public MemberDto updateMemberByEmail(String email, MemberDto newMember) {
+
         MemberDto oldMember = getMemberByEmail(email);
         newMember.setEmail(email);
         oldMember.setFirstName(newMember.getFirstName());

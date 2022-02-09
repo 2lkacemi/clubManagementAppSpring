@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface ICellService {
 
-     CellDto addCell(CellDto cellDto);
-     void deleteCellByCellRef(String cellRef);
+     void addCell(CellDto cellDto);
+     void removeCellByCellRef(String cellRef);
      List<CellDto> getAllCells();
      void addMemberToCell(String email, String cellRef);
      CellDto getCellByCellRef(String cellRef);

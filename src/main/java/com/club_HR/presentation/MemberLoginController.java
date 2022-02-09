@@ -1,31 +1,39 @@
 package com.club_HR.presentation;
 
+
 import com.club_HR.business.IMemberService;
 import com.club_HR.business.dto.MemberDto;
-import com.club_HR.business.enums.Gender;
 import com.club_HR.presentation.dto.LoginForm;
-import com.club_HR.presentation.dto.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.servlet.Registration;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class AuthenticationController {
+@RequestMapping("/login")
+public class MemberLoginController {
 
     IMemberService iMemberService;
 
     @Autowired
-    public AuthenticationController(IMemberService iMemberService) {
+    public MemberLoginController(IMemberService iMemberService) {
         this.iMemberService = iMemberService;
     }
 
+    @ModelAttribute("loginForm")
+    public LoginForm memberLoginForm() {
+        return new LoginForm();
+    }
 
-    //Check for Credentials
-    @PostMapping(value = {"/login"})
+    @GetMapping
+    public String showLoginForm(Model model) {
+        return "loginPage";
+    }
+
+    @PostMapping
     public String login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model) {
 
         String email = loginForm.getEmail();
@@ -39,23 +47,5 @@ public class AuthenticationController {
             }
         }
         return "redirect:login";
-    }
-
-    @PostMapping(value = {"/registration"})
-    public String registration(@ModelAttribute(name = "member") MemberDto member) {
-//        String firstName = registrationForm.getFirstName();
-//        String lastName = registrationForm.getLastName();
-//        String promo = registrationForm.getPromo();
-//        Gender gender = registrationForm.getGender();
-//        String password = registrationForm.getPassword();
-        String email = member.getEmail();
-        MemberDto memberFound = iMemberService.getMemberByEmail(email);
-        if (memberFound != null) {
-            return "redirect:login";
-        }
-        else{
-            iMemberService.addMember(member);
-            return "redirect:login";
-        }
     }
 }

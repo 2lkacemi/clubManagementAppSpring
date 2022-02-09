@@ -32,15 +32,14 @@ public class CellServiceImpl implements ICellService{
     }
 
     @Override
-    public CellDto addCell(CellDto cellDto) {
+    public void addCell(CellDto cellDto) {
         cellDto.setCellRef("code_" + cellDto.getCellName().substring(0,4));
         this.iCellDao.save(cellMapper.mapToCellEntity(cellDto));
-        return cellDto;
     }
 
     @Override
-    public void deleteCellByCellRef(String cellRef) {
-        iCellDao.deleteCellEntityByCellRef(cellRef);
+    public void removeCellByCellRef(String cellRef) {
+        iCellDao.deleteByCellRef(cellRef);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class CellServiceImpl implements ICellService{
 
     @Override
     public CellDto getCellByCellRef(String cellRef) {
-        return iCellDao.findCellEntityByCellRef(cellRef) != null ? cellMapper.mapToCellDto(iCellDao.findCellEntityByCellRef(cellRef)) : null;
+        return iCellDao.findByCellRef(cellRef) != null ? cellMapper.mapToCellDto(iCellDao.findByCellRef(cellRef)) : null;
     }
 
     @Override
