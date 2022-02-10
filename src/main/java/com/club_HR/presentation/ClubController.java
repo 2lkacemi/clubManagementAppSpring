@@ -7,6 +7,7 @@ import com.club_HR.business.dto.CellDto;
 import com.club_HR.business.dto.MemberDto;
 import com.club_HR.business.enums.MemberType;
 import com.club_HR.presentation.dto.LoginForm;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -107,24 +108,22 @@ public class ClubController {
         return "redirect:allCells";
     }
 
+    @RequestMapping("/updateMember")
+    public String updateMember(String email, Model model) {
+        MemberDto member = iMemberService.getMemberByEmail(email);
+        model.addAttribute("member", member);
+        return "updateMemberDashPage";
+    }
 
-
-
-//    @PutMapping("/{email}")
-//    public ResponseEntity<MemberDto> update(@RequestBody MemberDto member, @PathVariable String email) {
-//        MemberDto updatedMember = iMemberService.updateMemberByEmail(email, member);
-//        if (updatedMember == null) {
-//            return ResponseEntity.notFound().build();
-//        } else {
-//            return ResponseEntity.ok(updatedMember);
-//        }
-//    }
-
-
-//    @GetMapping("/delete/{cellRef}")
-//    public String deleteCell(@PathVariable String cellRef) {
-//        iCellService.removeCellByCellRef(cellRef);
-//        return "redirect:allCells";
-//    }
-
+    @GetMapping("/updateCell")
+    public String updateCell(String cellRef, Model model) {
+        CellDto cell = iCellService.getCellByCellRef(cellRef);
+        model.addAttribute("cell", cell);
+        return "updateCellDashPage";
+    }
+    @PostMapping("/updateCell")
+    public String updateCell(@ModelAttribute(name = "cell") CellDto cell) {
+        iCellService.updateCell(cell);
+        return "redirect:allCells";
+    }
 }

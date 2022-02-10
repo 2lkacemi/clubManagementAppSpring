@@ -7,6 +7,7 @@ import com.club_HR.persistence.ICellDao;
 import com.club_HR.persistence.entity.CellEntity;
 import com.club_HR.persistence.mapper.CellMapper;
 import com.club_HR.persistence.mapper.MemberMapper;
+import groovyjarjarpicocli.CommandLine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,12 @@ public class CellServiceImpl implements ICellService{
     public void addCell(CellDto cellDto) {
         cellDto.setCellRef("code_" + cellDto.getCellName().substring(0,4));
         this.iCellDao.save(cellMapper.mapToCellEntity(cellDto));
+    }
+
+    @Override
+    public void updateCell(CellDto cell){
+        CellEntity cellEntity = cellMapper.mapToCellEntity(cell);
+        iCellDao.updateCell(cellEntity.getCellRef(), cellEntity.getCellName());
     }
 
     @Override
