@@ -140,19 +140,19 @@
                                 </div>
                                 <div class="card-body ">
                                     <div class="notifications">
-                                        <a href="#!" class="notification" >
+                                        <a th:href="@{/dash/profileCell(cellRef=${cells.get(0).cellRef})}" class="notification" >
+                                            <div class="notification-icon" >
+                                                <i class="fas fa-inbox"></i>
+                                            </div>
+                                            <div class="notification-text" th:text="|${cells.get(0).cellName}|"></div>
+                                        </a>
+                                        <a th:href="@{/dash/profileCell(cellRef=${cells.get(1).cellRef})}" class="notification" >
                                             <div class="notification-icon" >
                                                 <i class="fas fa-inbox"></i>
                                             </div>
                                             <div class="notification-text" th:text="|${cells.get(1).cellName}|"></div>
                                         </a>
-                                        <a href="#!" class="notification" >
-                                            <div class="notification-icon" >
-                                                <i class="fas fa-inbox"></i>
-                                            </div>
-                                            <div class="notification-text" th:text="|${cells.get(2).cellName}|"></div>
-                                        </a>
-                                        <a href="#!" class="notification" >
+                                        <a th:href="@{/dash/profileCell(cellRef=${cells.get(2).cellRef})}" class="notification" >
                                             <div class="notification-icon" >
                                                 <i class="fas fa-inbox"></i>
                                             </div>
@@ -175,19 +175,19 @@
                                 </div>
                                 <div class="card-body ">
                                     <div class="notifications" >
-                                        <a href="#!" class="notification" >
+                                        <a th:href="@{/dash/profileMember(email=${members.get(0).email})}" class="notification" >
                                             <div class="notification-icon" >
                                                 <i class="fas fa-inbox"></i>
                                             </div>
                                             <div class="notification-text" th:text="|${members.get(0).firstName} ${members.get(0).lastName}|"></div>
                                         </a>
-                                        <a href="#!" class="notification" >
+                                        <a th:href="@{/dash/profileMember(email=${members.get(1).email})}" class="notification" >
                                             <div class="notification-icon" >
                                                 <i class="fas fa-inbox"></i>
                                             </div>
                                             <div class="notification-text" th:text="|${members.get(1).firstName} ${members.get(1).lastName}|"></div>
                                         </a>
-                                        <a href="#!" class="notification" >
+                                        <a th:href="@{/dash/profileMember(email=${members.get(2).email})}" class="notification" >
                                             <div class="notification-icon" >
                                                 <i class="fas fa-inbox"></i>
                                             </div>

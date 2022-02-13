@@ -93,6 +93,14 @@
                             <div class="card-body ">
                                 <form class="needs-validation" th:action="@{/dash/updateMember}" th:object="${member}" method="post">
                                     <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <input type="hidden" class="form-control" th:field= "*{id}" readonly>
+                                            <div class="invalid-feedback">
+                                                Valid first name is required.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label >First name</label>
                                             <input type="text" class="form-control" th:field= "*{firstName}" placeholder="Saad" required>

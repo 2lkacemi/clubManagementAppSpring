@@ -26,7 +26,11 @@ public class CellEntity {
 
     //attributs d'association
 
-    @ManyToMany(mappedBy = "cellEntities",cascade = CascadeType.MERGE)
-    private List<MemberEntity> memberEntities = new ArrayList<>() ;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "cell_member",
+            joinColumns = @JoinColumn(name = "cell_id"),
+            inverseJoinColumns = @JoinColumn(name = "member_id")
+    )
+    private List<MemberEntity> memberEntityList = new ArrayList<>() ;
 
 }

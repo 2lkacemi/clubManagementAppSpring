@@ -93,12 +93,16 @@
               <div class="card-body ">
                 <form th:action="@{/dash/addCell}" th:object="${cell}" method="post">
                   <div class="form-group">
-                    <label for="cellName">Cell's Name</label>
-                    <input type="text" class="form-control" id="cellName" name="cellName" placeholder="Competitions">
+                    <label>Cell's Name</label>
+                    <input type="text" class="form-control" th:field="*{cellName}" placeholder="Competitions">
                   </div>
                   <div class="form-group">
-                    <label for="cellDescription">Cell's Description</label>
-                    <input type="text" class="form-control" name="cellDescription" id="cellDescription" placeholder="Brief description of cell u want to add">
+                    <label>Cell's Name</label>
+                    <input type="text" class="form-control" th:field="*{cellName}" placeholder="Competitions">
+                  </div>
+                  <div class="form-group">
+                    <label>Cell's Description</label>
+                    <input type="text" class="form-control" th:field="*{cellDescription}" placeholder="Brief description of cell u want to add">
                   </div>
                   <button type="submit" class="btn btn-primary">Add</button>
                 </form>

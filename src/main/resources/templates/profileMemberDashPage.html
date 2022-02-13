@@ -82,51 +82,53 @@
         <main class="dash-content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card spur-card">
-                            <div class="card-header">
-                                <div class="spur-card-icon">
-                                    <i class="fas fa-table"></i>
+                    <div class="col-lg-5">
+                        <div class="stats stats-dark">
+                            <h3 class="stats-title" th:text="|${member.firstName} ${member.lastName}|" > </h3>
+                            <div class="stats-content">
+                                <div class="stats-icon">
+                                    <i class="fas fa-user"></i>
                                 </div>
-                                <div class="spur-card-title"> Cell's table</div>
-                                <a th:href="@{/dash/addCell}" class="btn btn-secondary mb-1 ml-md-auto">
-                                    <span class="fas fa-plus"></span>
-                                    <span class="btn-icon-label">Create New</span>
-                                </a>
+                                <div class="stats-data">
+                                    <div class="stats-change">
+                                        <span class="stats-percentage" >Tel:</span>
+                                        <span class="stats-timeframe" th:text="${member.tel}"></span>
+                                    </div>
+                                    <div class="stats-change">
+                                        <span class="stats-percentage" >Promo:</span>
+                                        <span class="stats-timeframe" th:text="${member.promo}"></span>
+                                    </div>
+                                    <div class="stats-change">
+                                        <span class="stats-percentage" >email:</span>
+                                        <span class="stats-timeframe" th:text="${member.email}"></span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-body ">
-                                <table class="table table-in-card">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">Cell's Ref</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="cell : ${cells}">
-                                        <td th:text="${cell.cellRef}"></td>
-                                        <td th:text="${cell.cellName}">cell</td>
-                                        <td th:text="${cell.cellDescription}"></td>
-                                        <td>
-                                            <a th:href="@{updateCell(cellRef=${cell.cellRef})}" class="btn btn-sm btn-primary my-1 my-sm-0">
-                                                <span class="fas fa-edit"></span>
-                                                Edit
-                                            </a>
-                                            <a th:href="@{deleteCell(cellRef=${cell.cellRef})}" class="btn btn-sm btn-danger my-1 my-sm-0">
-                                                <span class="fas fa-trash"></span>
-                                                Delete
-                                            </a>
-                                            <a th:href="@{profileCell(cellRef=${cell.cellRef})}" class="btn btn-sm btn-info my-1 my-sm-0">
-                                                <span class="far fa-address-book"></span>
-                                                Info
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="card spur-card">
+                            <div class="card-header bg-success text-white">
+                                <div class="spur-card-icon">
+                                    <i class="fas fa-cube"></i>
+                                </div>
+                                <div class="spur-card-title" >
+                                    <span th:text="${member.firstName}"></span>
+                                    <span>is part of the following cells:</span>
+                                </div>
+                                <div class="spur-card-menu">
+                                    <div class="dropdown show">
+                                        <a class="spur-card-menu-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="card-body "> Just a card that can be used to display some content, graphs, tables, and so on. </div>
                         </div>
                     </div>
                 </div>

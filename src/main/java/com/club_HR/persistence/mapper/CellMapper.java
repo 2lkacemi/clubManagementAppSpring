@@ -26,15 +26,16 @@ public class CellMapper {
      */
     public CellEntity mapToCellEntity(CellDto cellDto){
         CellEntity cellEntity = new CellEntity();
+        cellEntity.setId(cellDto.getId());
         cellEntity.setCellRef(cellDto.getCellRef());
         cellEntity.setCellName(cellDto.getCellName());
         cellEntity.setCellDescription(cellDto.getCellDescription());
 
-        List<MemberDto> membersList = cellDto.getMemberDtos();
+        List<MemberDto> membersList = cellDto.getMemberDtoList();
         List<MemberEntity> memberEntitiesList = membersList.stream()
                 .map(member -> memberMapper.mapToMemberEntity(member))
                 .collect(Collectors.toList());
-        cellEntity.setMemberEntities(memberEntitiesList);
+        cellEntity.setMemberEntityList(memberEntitiesList);
 
         return cellEntity;
     }
@@ -46,9 +47,16 @@ public class CellMapper {
      */
     public CellDto mapToCellDto(CellEntity cellEntity){
         CellDto cellDto = new CellDto();
+        cellDto.setId(cellEntity.getId());
         cellDto.setCellRef(cellEntity.getCellRef());
         cellDto.setCellName(cellEntity.getCellName());
         cellDto.setCellDescription(cellEntity.getCellDescription());
+
+        List<MemberEntity> memberEntityList = cellEntity.getMemberEntityList();
+        List<MemberDto> memberDtoList = memberEntityList.stream()
+                .map(member -> memberMapper.mapToMemberDto(member))
+                .collect(Collectors.toList());
+        cellDto.setMemberDtoList(memberDtoList);
 
         return cellDto;
     }

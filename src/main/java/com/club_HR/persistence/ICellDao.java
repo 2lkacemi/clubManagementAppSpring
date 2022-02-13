@@ -17,9 +17,6 @@ public interface ICellDao extends JpaRepository<CellEntity, Long> {
     CellEntity findByCellRef(String cellRef);
     void deleteByCellRef(String cellRef);
 
-    @Modifying
-    @Query("update CellEntity u set u.cellName = :cellName  where u.cellRef = :cellRef")
-    void updateCell(@Param(value = "cellRef") String cellRef, @Param(value = "cellName") String cellName);
 
 
 

@@ -13,6 +13,7 @@ import java.util.List;
 @Data @NoArgsConstructor @ToString
 @Table(name = "t_member")
 public class MemberEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -43,17 +44,8 @@ public class MemberEntity {
     @Column(name = "member_type", nullable = false, columnDefinition = "varchar(20) default 'member'")
     private MemberType memberType;
 
-    @ManyToMany
-    @JoinTable(name = "cell_member",
-            joinColumns = @JoinColumn(name = "member_id"),
-            inverseJoinColumns = @JoinColumn(name = "cell_id")
-    )
-    private List<CellEntity> cellEntities = new ArrayList<>() ;
 
-
-
+    @ManyToMany(mappedBy = "memberEntityList",fetch = FetchType.LAZY)
+    private List<CellEntity> cellEntityList = new ArrayList<>() ;
 
 }
-
-
-

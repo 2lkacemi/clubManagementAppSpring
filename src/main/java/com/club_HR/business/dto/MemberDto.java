@@ -12,6 +12,7 @@ import java.util.List;
 @Data @NoArgsConstructor @ToString
 public class MemberDto {
 
+    private long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,6 +21,6 @@ public class MemberDto {
     private Gender gender;
     private String promo;
     private MemberType memberType;
-    private List<CellDto> cellDtos = new ArrayList<>();
+    private List<CellDto> cellDtoList = new ArrayList<>();
 
 }

@@ -17,7 +17,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -56,11 +58,7 @@ public class ClubController {
     }
 
     @GetMapping("/addMember")
-    public String addMember(Model model) {
-//        model.addAttribute("member", MemberType.member);
-//        model.addAttribute("admin", MemberType.admin);
-//        model.addAttribute("superAdmin", MemberType.superAdmin);
-//        model.addAttribute("memberType", MemberType.values());
+    public String addMember() {
         return "addMemberDashPage";
     }
 
@@ -69,9 +67,32 @@ public class ClubController {
         return "addCellDashPage";
     }
 
-    @GetMapping("/profile")
-    public String profileMember() {
-        return "memberProfile";
+    @RequestMapping("/profileMember")
+    public String profileMember(String email, Model model) {
+        MemberDto member = iMemberService.getMemberByEmail(email);
+        model.addAttribute("member", member);
+        return "profileMemberDashPage";
+    }
+
+    @RequestMapping("/profileCell")
+    public String profileCell(String cellRef, Model model) {
+        CellDto cell = iCellService.getCellByCellRef(cellRef);
+        List<MemberDto> listMembersInCell = cell.getMemberDtoList();
+        List<MemberDto> listMembers =  iMemberService.getAllMembers();
+        List<MemberDto> listMembersNotInCell = new ArrayList<>();
+
+        model.addAttribute("listMembers",listMembers);
+        model.addAttribute("cell", cell);
+        model.addAttribute("nbAdherents", cell.getMemberDtoList().size());
+        model.addAttribute("listMembersInCell", listMembersInCell);
+
+        for (MemberDto member : listMembers) {
+            if (!listMembersInCell.contains(member)){
+                listMembersNotInCell.add(member);
+            }
+        }
+        model.addAttribute("listMembersNotInCell", listMembersNotInCell);
+        return "profileCellDashPage";
     }
 
     @GetMapping("/{email}")
@@ -115,15 +136,36 @@ public class ClubController {
         return "updateMemberDashPage";
     }
 
+    @PostMapping("/updateMember")
+    public String updateCell(@ModelAttribute(name = "member") MemberDto member) {
+        iMemberService.updateMember(member);
+        return "redirect:allMembers";
+    }
+
     @GetMapping("/updateCell")
     public String updateCell(String cellRef, Model model) {
         CellDto cell = iCellService.getCellByCellRef(cellRef);
         model.addAttribute("cell", cell);
         return "updateCellDashPage";
     }
+
     @PostMapping("/updateCell")
     public String updateCell(@ModelAttribute(name = "cell") CellDto cell) {
         iCellService.updateCell(cell);
         return "redirect:allCells";
+    }
+
+    @RequestMapping("/addMemberToCell")
+    public String addMemberToCell(String email, String cellRef, Model model){
+        iCellService.addMemberToCell(email, cellRef);
+        model.addAttribute("cellRef", cellRef);
+        return "redirect:profileCell?cellRef="+cellRef;
+    }
+
+    @RequestMapping("/removeMemberFromCell")
+    public String removeMemberFromCell(String email, String cellRef, Model model){
+        iCellService.removeMemberFromCell(email, cellRef);
+        model.addAttribute("cellRef", cellRef);
+        return "redirect:profileCell?cellRef="+cellRef;
     }
 }

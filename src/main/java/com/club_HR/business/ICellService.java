@@ -8,12 +8,13 @@ import java.util.List;
 public interface ICellService {
 
      void addCell(CellDto cellDto);
-     void updateCell(CellDto cellRef);
+     void updateCell(CellDto cell);
      void removeCellByCellRef(String cellRef);
      List<CellDto> getAllCells();
      void addMemberToCell(String email, String cellRef);
      CellDto getCellByCellRef(String cellRef);
-     void deleteMemberFromCell(String email, String cellRef );
+     CellDto getCellById(Long id);
+     void removeMemberFromCell(String email, String cellRef);
 
 
 

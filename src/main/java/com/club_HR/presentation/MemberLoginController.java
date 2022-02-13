@@ -35,7 +35,6 @@ public class MemberLoginController {
 
     @PostMapping
     public String login(@ModelAttribute(name = "loginForm") LoginForm loginForm, Model model) {
-
         String email = loginForm.getEmail();
         String password = loginForm.getPassword();
         MemberDto memberFound = iMemberService.getMemberByEmail(email);

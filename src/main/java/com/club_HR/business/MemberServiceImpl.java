@@ -1,15 +1,16 @@
 package com.club_HR.business;
 
+import com.club_HR.business.dto.CellDto;
 import com.club_HR.persistence.IMemberDao;
 import com.club_HR.business.dto.MemberDto;
 
+import com.club_HR.persistence.entity.CellEntity;
 import com.club_HR.persistence.mapper.MemberMapper;
 import com.club_HR.persistence.entity.MemberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -30,6 +31,11 @@ public class MemberServiceImpl implements IMemberService {//on va faire le coupl
     public MemberDto addMember(MemberDto memberDto) {
         this.iMemberDao.save(memberMapper.mapToMemberEntity(memberDto));
         return memberDto;
+    }
+
+    @Override
+    public void updateMember(MemberDto member){
+        iMemberDao.save(memberMapper.mapToMemberEntity(member));
     }
 
     @Override
@@ -54,20 +60,4 @@ public class MemberServiceImpl implements IMemberService {//on va faire le coupl
             iMemberDao.deleteByEmail(email);
     }
 
-    @Override
-    public MemberDto updateMemberByEmail(String email, MemberDto newMember) {
-
-        MemberDto oldMember = getMemberByEmail(email);
-        newMember.setEmail(email);
-        oldMember.setFirstName(newMember.getFirstName());
-        oldMember.setMemberType(newMember.getMemberType());
-        oldMember.setCellDtos(newMember.getCellDtos());
-        oldMember.setGender(newMember.getGender());
-        oldMember.setPromo(newMember.getPromo());
-        oldMember.setLastName(newMember.getLastName());
-        oldMember.setTel(newMember.getTel());
-
-        addMember(oldMember);
-        return oldMember;
-    }
 }

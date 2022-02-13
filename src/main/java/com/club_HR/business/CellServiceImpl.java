@@ -40,8 +40,8 @@ public class CellServiceImpl implements ICellService{
 
     @Override
     public void updateCell(CellDto cell){
-        CellEntity cellEntity = cellMapper.mapToCellEntity(cell);
-        iCellDao.updateCell(cellEntity.getCellRef(), cellEntity.getCellName());
+            CellEntity cellEntity = cellMapper.mapToCellEntity(cell);
+        iCellDao.save(cellEntity);
     }
 
     @Override
@@ -65,11 +65,10 @@ public class CellServiceImpl implements ICellService{
         MemberDto memberDto = iMemberService.getMemberByEmail(email);
         CellDto cellDto = this.getCellByCellRef(cellRef);
 
-        if (!cellDto.getMemberDtos().contains(memberDto)){
-            cellDto.getMemberDtos().add(memberDto);
+        if (!cellDto.getMemberDtoList().contains(memberDto)){
+            cellDto.getMemberDtoList().add(memberDto);
             iCellDao.save(cellMapper.mapToCellEntity(cellDto));
         }
-
     }
 
     @Override
@@ -78,14 +77,18 @@ public class CellServiceImpl implements ICellService{
     }
 
     @Override
-    public void deleteMemberFromCell(String email, String cellRef) {
+    public CellDto getCellById(Long id) {
+        return iCellDao.findById(id).isPresent() ? cellMapper.mapToCellDto(iCellDao.findById(id).get()) : null;
+    }
+
+    @Override
+    public void removeMemberFromCell(String email, String cellRef) {
         //recuperer le membre avec id == id
         MemberDto memberDto = iMemberService.getMemberByEmail(email);
         CellDto cellDto = this.getCellByCellRef(cellRef);
-        if (!cellDto.getMemberDtos().contains(memberDto)){
-            cellDto.getMemberDtos().remove(memberDto);
-            iCellDao.delete(cellMapper.mapToCellEntity(cellDto));
+        if (cellDto.getMemberDtoList().contains(memberDto)){
+            cellDto.getMemberDtoList().remove(memberDto);
+            iCellDao.save(cellMapper.mapToCellEntity(cellDto));
         }
     }
-
 }

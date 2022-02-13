@@ -11,10 +11,11 @@ import java.util.List;
 
 public class CellDto {
 
+    private long id;
     private String cellRef;
     private String cellName;
     private String cellDescription;
-    private List<MemberDto> memberDtos = new ArrayList<>();
+    private List<MemberDto> memberDtoList = new ArrayList<>();
 
 
 }
