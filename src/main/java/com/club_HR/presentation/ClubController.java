@@ -62,19 +62,31 @@ public class ClubController {
         return "addMemberDashPage";
     }
 
+    @PostMapping("/addMember")
+    public String addMember(@ModelAttribute(name = "member") MemberDto member) {
+        iMemberService.addMember(member);
+        return "redirect:allMembers";
+    }
+
     @GetMapping("/addCell")
     public String addCell() {
         return "addCellDashPage";
     }
 
-    @RequestMapping("/profileMember")
+    @PostMapping("/addCell")
+    public String addCell(@ModelAttribute(name = "cell") CellDto cell) {
+        iCellService.addCell(cell);
+        return "redirect:allCells";
+    }
+
+    @GetMapping("/profileMember")
     public String profileMember(String email, Model model) {
         MemberDto member = iMemberService.getMemberByEmail(email);
         model.addAttribute("member", member);
         return "profileMemberDashPage";
     }
 
-    @RequestMapping("/profileCell")
+    @GetMapping("/profileCell")
     public String profileCell(String cellRef, Model model) {
         CellDto cell = iCellService.getCellByCellRef(cellRef);
         List<MemberDto> listMembersInCell = cell.getMemberDtoList();
@@ -103,18 +115,6 @@ public class ClubController {
         } else {
             return ResponseEntity.ok(foundMember);
         }
-    }
-
-    @PostMapping("/addMember")
-    public String addMember(@ModelAttribute(name = "member") MemberDto member) {
-        iMemberService.addMember(member);
-        return "redirect:allMembers";
-    }
-
-    @PostMapping("/addCell")
-    public String addCell(@ModelAttribute(name = "cell") CellDto cell) {
-        iCellService.addCell(cell);
-        return "redirect:allCells";
     }
 
     @RequestMapping("/deleteMember")

@@ -1,9 +1,3 @@
-/*!
- * spur-template - An admin template based on Bootstrap 4
- * Version v1.1.0
- * Copyright 2016 - 2019 Alexander Rechsteiner
- * https://hackerthemes.com
- */
 
 Chart.defaults.global.defaultFontFamily = "'Open Sans', 'sans-serif'";
 
@@ -16,3 +10,12 @@ window.chartColors = {
     superwarning: '#fd7e14',
     danger: '#FC413F',
 };
+$(document).ready( function () {
+    $('#table_members').DataTable();
+} );
+$(document).ready(function() {
+    $('#table_members').DataTable( {
+        "order": [[ 3, "desc" ]]
+    } );
+} );
+

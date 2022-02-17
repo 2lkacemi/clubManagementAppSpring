@@ -1,66 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CODE ESI - Club Of Data Engineers</title>
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bootstrap4-neon-glow.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600|Open+Sans:400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="../css/spur.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+    <script src="../js/chart-js-config.js"></script>
+    <title>Spur - A Bootstrap Admin Template</title>
 </head>
+
 <body>
-
-<div class="navbar-dark text-white">
-    <div class="container">
-        <nav class="navbar px-0 navbar-expand-lg navbar-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a th:href="@{/}" class="pl-md-0 p-3 text-light">Home</a>
-                    <a th:href="@{/login}" class="p-3 text-decoration-none text-light">Log in</a>
-                    <a th:href="@{/registration}" class="p-3 text-decoration-none text-light">Sign up</a>
-                </div>
-            </div>
-        </nav>
-
-    </div>
-</div>
-<div class="jumbotron bg-transparent mb-0 radius-0">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-6">
-                <h1 class="display-2">Logi<span class="vim-caret">n</span></h1>
-                <div class="lead mb-3 text-mono text-success">Login to your account </div>
+    <div class="form-screen">
+        <a href="index.html" class="spur-logo"><i class="fas fa-bolt"></i> <span>Spur</span></a>
+        <div class="card account-dialog">
+            <div class="card-header bg-primary text-white"> Please sign in </div>
+            <div class="card-body">
                 <form th:action="@{/login}" th:object="${loginForm}" method="post">
                     <div class="form-group">
-                        <label for="email">Email address
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
-                                   placeholder="Enter email" th:field="*{email}">
-                        </label>
-                        <label for="example-password-input">Password <span class="text-muted"></span>
-                            <input class="form-control" type="password" value="hunter2" id="example-password-input" th:field="*{password}">
-                        </label>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email</small>
+                        <input type="email" class="form-control" id="exampleInputEmail1"
+                               aria-describedby="emailHelp" placeholder="Enter email" th:field="*{email}">
                     </div>
-                    <button type="submit" value="Log in" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" th:field="*{password}">
+                    </div>
+                    <div class="account-dialog-actions">
+                        <button type="submit" class="btn btn-primary">Sign in</button>
+                        <a class="account-dialog-link" href="signup.html">Create a new account</a>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-
-
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="../js/spur.js"></script>
 </body>
+
 </html>
