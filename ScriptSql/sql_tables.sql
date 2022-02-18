@@ -11,7 +11,7 @@ USE sms_codesi;
 -- -----------------------------------------------------------------------------
 
 CREATE TABLE T_user (
-    idUser         INT          		PRIMARY KEY AUTO_INCREMENT,
+    id         INT          		PRIMARY KEY AUTO_INCREMENT,
     firstName         VARCHAR(20)      NOT NULL,
     lastName			 VARCHAR(20)		NOT NULL,
     joinDate          DATETIME     		NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -61,7 +61,7 @@ USE sms_codesi;
 -- - Construction de la table des utilisateurs                                  ---
 -- -----------------------------------------------------------------------------
 CREATE TABLE `t_member` (
-	`member_id` INT(10) NOT NULL AUTO_INCREMENT,
+	`id` INT(10) NOT NULL AUTO_INCREMENT,
 	`first_name` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`last_name` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`joinDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,

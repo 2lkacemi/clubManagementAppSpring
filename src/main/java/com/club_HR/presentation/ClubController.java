@@ -5,22 +5,14 @@ import com.club_HR.business.ICellService;
 import com.club_HR.business.IMemberService;
 import com.club_HR.business.dto.CellDto;
 import com.club_HR.business.dto.MemberDto;
-import com.club_HR.business.enums.MemberType;
-import com.club_HR.presentation.dto.LoginForm;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 
@@ -36,7 +28,7 @@ public class ClubController {
         this.iCellService = iCellService;
     }
 
-    @GetMapping(value = {"/", ""})
+    @GetMapping(value = {""})
     public String homeDash(Model model) {
         model.addAttribute("members", iMemberService.getAllMembers());
         model.addAttribute("cells", iCellService.getAllCells());

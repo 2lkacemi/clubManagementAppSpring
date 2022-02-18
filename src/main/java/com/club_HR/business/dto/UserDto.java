@@ -5,11 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Data @NoArgsConstructor @ToString
-public class MemberDto {
+public class UserDto {
 
     private long id;
     private String firstName;
@@ -20,6 +17,5 @@ public class MemberDto {
     private Gender gender;
     private String promo;
     private MemberType memberType;
-    private List<CellDto> cellDtoList = new ArrayList<>();
 
 }

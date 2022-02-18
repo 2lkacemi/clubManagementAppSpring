@@ -32,7 +32,6 @@ public class MemberMapper {
         memberEntity.setFirstName(memberDto.getFirstName());
         memberEntity.setLastName(memberDto.getLastName());
         memberEntity.setEmail(memberDto.getEmail());
-        memberEntity.setMemberType(memberDto.getMemberType());
         memberEntity.setGender(memberDto.getGender());
         memberEntity.setPassword(memberDto.getPassword());
         memberEntity.setPromo(memberDto.getPromo());
@@ -58,7 +57,6 @@ public class MemberMapper {
         memberDto.setFirstName(memberEntity.getFirstName());
         memberDto.setLastName(memberEntity.getLastName());
         memberDto.setEmail(memberEntity.getEmail());
-        memberDto.setMemberType(memberEntity.getMemberType());
         memberDto.setGender(memberEntity.getGender());
         memberDto.setPassword(memberEntity.getPassword());
         memberDto.setPromo(memberEntity.getPromo());

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/")
 public class MemberLoginController {
 
     IMemberService iMemberService;
@@ -29,7 +29,7 @@ public class MemberLoginController {
     }
 
     @GetMapping
-    public String showLoginForm(Model model) {
+    public String showLoginForm() {
         return "loginPage";
     }
 
@@ -47,4 +47,6 @@ public class MemberLoginController {
         }
         return "redirect:login";
     }
+
+
 }
