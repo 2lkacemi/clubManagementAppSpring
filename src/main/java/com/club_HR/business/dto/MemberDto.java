@@ -15,11 +15,12 @@ public class MemberDto {
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
     private String tel;
     private Gender gender;
     private String promo;
-    private MemberType memberType;
+    private String city;
+    private int age;
+    private String level;
     private List<CellDto> cellDtoList = new ArrayList<>();
 
 }

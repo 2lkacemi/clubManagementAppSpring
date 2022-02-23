@@ -91,26 +91,21 @@
                                 <div class="spur-card-title"> Please enter credential about member you want to add </div>
                             </div>
                             <div class="card-body ">
-                                <form class="needs-validation" th:action="@{/dash/updateMember}" th:object="${member}" method="post">
+                                <form class="needs-validation" th:action="@{/dash/addMember}" th:object="${member}" method="post">
                                     <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <input type="hidden" class="form-control" th:field= "*{id}" readonly>
-                                            <div class="invalid-feedback">
-                                                Valid first name is required.
-                                            </div>
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" th:field="*{id}">
                                         </div>
-                                    </div>
-                                    <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label >First name</label>
-                                            <input type="text" class="form-control" th:field= "*{firstName}" placeholder="Saad" required>
+                                            <input type="text" class="form-control" th:field ="*{firstName}" placeholder="Saad" required>
                                             <div class="invalid-feedback">
                                                 Valid first name is required.
                                             </div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label>Last name</label>
-                                            <input type="text" class="form-control" th:field= "*{lastName}" placeholder="Dahmani"  required>
+                                            <input type="text" class="form-control" th:field ="*{lastName}" placeholder="Dahmani"  required>
                                             <div class="invalid-feedback">
                                                 Valid last name is required.
                                             </div>
@@ -118,9 +113,9 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label>Email address</label>
-                                            <input type="email" class="form-control" aria-describedby="emailHelp"
-                                                   placeholder="Enter email" th:field= "*{email}" required>
+                                            <label >Email address</label>
+                                            <input type="email" class="form-control"  aria-describedby="emailHelp"
+                                                   placeholder="Enter email" th:field ="*{email}" required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid email address .
                                             </div>
@@ -128,59 +123,56 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input type="number" class="form-control" th:field= "*{tel}"  placeholder="0690457173"  required>
+                                        <input type="text" class="form-control" th:field ="*{tel}" placeholder="0690457173"  required>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="form-row">
-                                            <div class="form-group col-md-6">
-                                                <label >Password</label>
-                                                <input type="password" class="form-control" th:field= "*{password}" placeholder="Password">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label >City</label>
+                                            <input type="text" class="form-control" placeholder="Casablanca" th:field ="*{city}">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>Age</label>
+                                            <input type="text" class="form-control" placeholder="21" th:field ="*{age}">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label >Promo</label>
+                                            <select name="promo" class="form-control">
+                                                <option selected="${member.promo}" th:text="${member.promo}"></option>
+                                                <option  th:each="n : ${#numbers.sequence(2015,2030)}" th:value="${n}" th:text="${n}"/>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label >Level</label>
+                                            <select  name="level" class="form-control">
+                                                <option selected="${member.level}" th:text="${member.level}"></option>
+                                                <option value="1ACI">1ACI</option>
+                                                <option value="2ACI">2ACI</option>
+                                                <option value="3ACI">3ACI</option>
+                                                <option value="Master">Master</option>
+                                                <option value="PHD">PHD</option>
+                                                <option value="Professor">Professor</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-3 mb-3">
+                                            <label>Gender<span class="text-muted">*</span></label>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" value="M" th:field="*{gender}">
+                                                <label class="custom-control-label" for="customRadio1">Male</label>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label >Confirm Password</label>
-                                                <input type="password" class="form-control" placeholder="Password">
-                                                <div class="invalid-feedback">
-                                                    Please enter your phone number .
-                                                </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input" value="F" th:field="*{gender}">
+                                                <label class="custom-control-label" for="customRadio2">Female</label>
+                                            </div>
+                                            <div class="custom-control custom-radio">
+                                                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input" value="O" th:field="*{gender}">
+                                                <label class="custom-control-label" for="customRadio3">Other</label>
                                             </div>
                                         </div>
-                                        <div class="form-row">
-                                            <div class="col-md-3 mb-3">
-                                                <label>Gender<span class="text-muted">*</span></label>
-                                                <div class="custom-control custom-radio">
-                                                    <input th:field= "*{gender}" type="radio" value="M" class="custom-control-input" checked required>
-                                                    <label class="custom-control-label"  >M</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input th:field= "*{gender}"type="radio" value="F" class="custom-control-input" required>
-                                                    <label class="custom-control-label" >F</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3 mb-3">
-                                                <label>Member Type</label>
-                                                <div class="custom-control custom-radio">
-                                                    <input th:field= "*{memberType}" type="radio" value="member" class="custom-control-input" checked required>
-                                                    <label class="custom-control-label" >Member</label>
-                                                </div>
-                                                <div class="custom-control custom-radio">
-                                                    <input th:field= "*{memberType}" type="radio" value="admin" class="custom-control-input" required>
-                                                    <label class="custom-control-label" >Admin</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="promo" >Promo<span class="text-muted">(Optional)</span></label>
-                                                <select class="custom-select d-block w-100" id="promo" name="promo">
-                                                    <option value="">Choose...</option>
-                                                    <option>2017</option>
-                                                    <option>2018</option>
-                                                    <option>2019</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Please provide a valid number.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Save updates</button>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="btn btn-primary">Confirm changes</button>
                                     </div>
                                 </form>
                             </div>

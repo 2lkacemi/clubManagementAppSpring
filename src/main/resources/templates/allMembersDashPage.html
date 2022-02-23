@@ -99,50 +99,36 @@
                                 <table id="members" class="display" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="firstName">First</th>
-                                        <th scope="col" class="lastName">Last</th>
-                                        <th scope="col" class="email">Email</th>
-                                        <th scope="col" class="tel">Tel</th>
-                                        <th scope="col" class="promo">Promo</th>
-                                        <th scope="col" class="type">Type</th>
-                                        <th scope="col">Actions</th>
+                                        <th> Name</th>
+                                        <th class="gender">Gender</th>
+                                        <th class="email">Email</th>
+                                        <th class="tel">tel</th>
+                                        <th class="level">Level</th>
+                                        <th class="promo">Promo</th>
+                                        <th> Actions </th>
                                     </tr>
                                     </thead>
                                     <tbody >
                                     <tr th:each="member : ${members}">
-                                        <td th:text="${member.firstName}"></td>
-                                        <td th:text="${member.lastName}"></td>
+                                        <td th:text="|${member.firstName} ${member.lastName}|"></td>
+                                        <td th:text="${member.gender}"></td>
                                         <td th:text="${member.email}"></td>
                                         <td th:text="${member.tel}"></td>
+                                        <td th:text="${member.level}"></td>
                                         <td th:text="${member.promo}"></td>
-                                        <td th:text="${member.memberType}"></td>
                                         <td>
                                             <a th:href="@{updateMember(email=${member.email})}" class="btn btn-sm btn-primary my-1 my-sm-0">
                                                 <span class="fas fa-edit"></span>
-                                                Edit
                                             </a>
                                             <a th:href="@{deleteMember(email=${member.email})}" class="btn btn-sm btn-danger my-1 my-sm-0">
                                                 <span class="fas fa-trash"></span>
-                                                Delete
                                             </a>
                                             <a th:href="@{profileMember(email=${member.email})}" class="btn btn-sm btn-info my-1 my-sm-0">
                                                 <span class="far fa-address-book"></span>
-                                                Info
                                             </a>
                                         </td>
                                     </tr>
                                     </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th scope="col" class="firstName">First</th>
-                                        <th scope="col" class="lastName">Last</th>
-                                        <th scope="col" class="email">Email</th>
-                                        <th scope="col" class="tel">Tel</th>
-                                        <th scope="col" class="promo">Promo</th>
-                                        <th scope="col" class="type">Type</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>
@@ -162,6 +148,9 @@
 <script>
     $(document).ready( function () {
         $('#members').DataTable();
+    } );
+    $('#members').DataTable( {
+        responsive: true
     } );
 
 </script>

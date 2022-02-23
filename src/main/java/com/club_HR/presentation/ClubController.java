@@ -50,7 +50,8 @@ public class ClubController {
     }
 
     @GetMapping("/addMember")
-    public String addMember() {
+    public String addMember(Model model, MemberDto member) {
+        model.addAttribute("member", member);
         return "addMemberDashPage";
     }
 

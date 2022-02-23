@@ -16,6 +16,5 @@ public class UserDto {
     private String tel;
     private Gender gender;
     private String promo;
-    private MemberType memberType;
 
 }

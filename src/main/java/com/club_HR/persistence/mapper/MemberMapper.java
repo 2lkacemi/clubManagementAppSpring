@@ -33,9 +33,12 @@ public class MemberMapper {
         memberEntity.setLastName(memberDto.getLastName());
         memberEntity.setEmail(memberDto.getEmail());
         memberEntity.setGender(memberDto.getGender());
-        memberEntity.setPassword(memberDto.getPassword());
         memberEntity.setPromo(memberDto.getPromo());
         memberEntity.setTel(memberDto.getTel());
+        memberEntity.setCity(memberDto.getCity());
+        memberEntity.setAge(memberDto.getAge());
+        memberEntity.setLevel(memberDto.getLevel());
+
         // map cellDtos list
 //        List<CellDto> cellsList = memberDto.getCellDtos();
 //        List<CellEntity> cellEntitiesList = cellsList.stream().map(cell -> cellMapper.
@@ -58,9 +61,11 @@ public class MemberMapper {
         memberDto.setLastName(memberEntity.getLastName());
         memberDto.setEmail(memberEntity.getEmail());
         memberDto.setGender(memberEntity.getGender());
-        memberDto.setPassword(memberEntity.getPassword());
         memberDto.setPromo(memberEntity.getPromo());
         memberDto.setTel(memberEntity.getTel());
+        memberDto.setCity(memberEntity.getCity());
+        memberDto.setAge(memberEntity.getAge());
+        memberDto.setLevel(memberEntity.getLevel());
         // map cellDtos
 //        List<CellEntity> cellsEntitiesList = memberEntity.getCellEntityList();
 //        List<CellDto> cellsList = cellsEntitiesList.stream().map(cell -> cellMapper.

@@ -1,5 +1,5 @@
 package com.club_HR.business.enums;
 
 public enum Gender {
-    M, F
+    M, F, O
 }

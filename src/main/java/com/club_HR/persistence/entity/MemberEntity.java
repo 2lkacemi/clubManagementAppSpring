@@ -26,11 +26,17 @@ public class MemberEntity {
     @Column(name = "member_email", nullable = false)
     private String email;
 
-    @Column(name = "member_password", nullable = false)
-    private String password;
-
     @Column(name = "member_tel", nullable = false)
     private String tel;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "level")
+    private String level;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender", nullable = false)
