@@ -100,6 +100,17 @@ public class ClubController {
         return "profileCellDashPage";
     }
 
+    @GetMapping("/sendEmail")
+    public String sendEmail(String cellRef, String email, Model model){
+//        List<String> listMails = new ArrayList<>();
+//        for (MemberDto member : iCellService.getCellByCellRef(cellRef).getMemberDtoList()) {
+//            listMails.add(member.getEmail());
+//        }
+//        model.addAttribute("senderMail", email);
+//        model.addAttribute("listMails", listMails);
+        return "sendEmailDashPage";
+    }
+
     @GetMapping("/{email}")
     public ResponseEntity<MemberDto> getMemberByEmail(@PathVariable("email") String email) {
         MemberDto foundMember = iMemberService.getMemberByEmail(email);
@@ -161,4 +172,6 @@ public class ClubController {
         model.addAttribute("cellRef", cellRef);
         return "redirect:profileCell?cellRef="+cellRef;
     }
+
+
 }

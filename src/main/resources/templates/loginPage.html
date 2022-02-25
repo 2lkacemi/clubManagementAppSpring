@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/spur.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
     <script src="../js/chart-js-config.js"></script>
-    <title>Spur - A Bootstrap Admin Template</title>
+    <title>CODE - Club Of Data Engineers </title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         <div class="card account-dialog">
             <div class="card-header bg-primary text-white"> Please log in </div>
             <div class="card-body">
-                <form th:action="@{/}" th:object="${loginForm}" method="post">
+                <form th:action="@{/login}" th:object="${loginForm}" method="post">
                     <div class="form-group">
                         <input type="email" class="form-control" id="exampleInputEmail1"
                                aria-describedby="emailHelp" placeholder="Enter email" th:field="*{email}">

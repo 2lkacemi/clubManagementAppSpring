@@ -83,83 +83,46 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="stats stats-dark">
-                            <h3 class="stats-title" th:text="|${cell.cellName}|" > </h3>
-                            <div class="stats-content">
-                                <div class="stats-icon">
-                                    <i class="fas fa-cube" >  </i>
-                                    <span th:text="|${cell.cellRef}|"></span>
+                        <div class="card spur-card">
+                            <div class="card-header">
+                                <div class="spur-card-icon">
+                                    <i class="fas fa-chart-bar"></i>
                                 </div>
-                                <div class="stats-data">
-                                    <div class="stats-number" th:text="|${nbAdherents}|"></div>
-                                    <div class="stats-change">
-                                        <span class="stats-percentage"></span>
-                                        <span class="stats-timeframe">member</span>
+                                <div class="spur-card-title"> Send Email </div>
+                            </div>
+                            <div class="card-body ">
+                                <form>
+                                    <div class="form-group row">
+                                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="stats-data">
-                                    <div class="stats-change">
-                                        <div class="stats-number">Description</div>
-                                        <span class="stats-timeframe" th:text="${cell.cellDescription}"></span>
+                                    <div class="form-group row">
+                                        <label  class="col-sm-2 col-form-label">Subject</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                        </div>
                                     </div>
-                                </div>
+                                    <fieldset class="form-group">
+                                        <div class="row">
+                                            <legend class="col-form-label col-sm-2 pt-0">Body</legend>
+                                            <div class="col-sm-10">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="form-group row">
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                        <a th:href="@{/dash/sendEmail}" target="_blank" class="btn btn-primary mb-1">
-                            <i class="fab fa-google mr-2"></i> Send an email to members cell</a>
                     </div>
-
-                    <div class="col-lg-6">
-                        <span class="badge badge-pill badge-success">Member's cell</span>
-                        <table class="table table-hover table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr th:each="member : ${listMembersInCell}">
-                                <td th:text="|${member.firstName} ${member.lastName}|"></td>
-                                <td th:text="${member.email}"></td>
-                                <td>
-                                    <a  th:href="@{removeMemberFromCell(email=${member.email},cellRef=${cell.cellRef})}" class="btn btn-outline-dark btn-sm mb-1">
-                                        <span class="fas fa-user-minus"></span>
-                                        Remove
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="col-lg-6">
-                        <span class="badge badge-pill badge-info">Other members</span>
-                        <table class="table table-hover table-striped">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <tr th:each="member : ${listMembersNotInCell}">
-                                <td th:text="|${member.firstName} ${member.lastName}|"></td>
-                                <td th:text="${member.email}"></td>
-                                <td>
-                                    <a  th:href="@{addMemberToCell(email=${member.email},cellRef=${cell.cellRef})}" class="btn btn-outline-dark btn-sm mb-1">
-                                        <span class="fas fa-user-plus"></span>
-                                        Add
-                                    </a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
             </div>
         </main>

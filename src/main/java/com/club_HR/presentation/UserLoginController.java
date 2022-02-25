@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class UserLoginController {
 
     IUserService iUserService;
@@ -47,7 +47,8 @@ public class UserLoginController {
                 return "redirect:dash";
             }
         }
-        return "redirect:login";
+//        model.addAttribute()
+        return "redirect:/login";
     }
 
 
