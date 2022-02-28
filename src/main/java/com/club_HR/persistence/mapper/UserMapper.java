@@ -10,6 +10,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
+
+    /**
+     * method which convert a dto to an entity
+     * @param userDto parameter
+     * @return userEntity
+     */
     public UserEntity mapToUserEntity(UserDto userDto){
         UserEntity userEntity = new UserEntity();
 
@@ -25,6 +31,11 @@ public class UserMapper {
         return userEntity;
     }
 
+    /**
+     * method which convert an entity to a dto
+     * @param userEntity parameter
+     * @return userDto
+     */
     public UserDto mapToUserDto(UserEntity userEntity ){
         UserDto userDto  = new UserDto();
 

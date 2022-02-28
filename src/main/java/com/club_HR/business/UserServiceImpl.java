@@ -22,12 +22,21 @@ public class UserServiceImpl implements IUserService{
         this.userMapper = userMapper;
     }
 
+    /**
+     * add user
+     * @param userDto parameter
+     * @return user added
+     */
     @Override
     public UserDto addUser(UserDto userDto) {
         this.iUserDao.save(userMapper.mapToUserEntity(userDto));
         return userDto;
     }
 
+    /**
+     * get all users
+     * @return list of users
+     */
     @Override
     public List<UserDto> getAllUsers() {
         List<UserEntity> userEntityList = iUserDao.findAll();
@@ -37,6 +46,11 @@ public class UserServiceImpl implements IUserService{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * get user using email
+     * @param email parameter
+     * @return a user
+     */
     @Override
     public UserDto getUserByEmail(String email) {
         return iUserDao.findUserEntityByEmail(email)
@@ -44,11 +58,19 @@ public class UserServiceImpl implements IUserService{
                 .orElse(null);
     }
 
+    /**
+     * remove a user using an email
+     * @param email parameter
+     */
     @Override
     public void removeUserByEmail(String email) {
         iUserDao.deleteByEmail(email);
     }
 
+    /**
+     * updating user
+     * @param userDto parameter
+     */
     @Override
     public void updateUser(UserDto userDto) {
         iUserDao.save(userMapper.mapToUserEntity(userDto));

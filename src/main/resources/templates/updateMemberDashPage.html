@@ -83,7 +83,7 @@
                                 <div class="spur-card-title"> Please enter credential about member you want to add </div>
                             </div>
                             <div class="card-body ">
-                                <form class="needs-validation" th:action="@{/dash/addMember}" th:object="${member}" method="post">
+                                <form class="needs-validation" th:action="@{/dash/updateMember}" th:object="${member}" method="post">
                                     <div class="form-row">
                                         <div class="form-group">
                                             <input type="hidden" class="form-control" th:field="*{id}">

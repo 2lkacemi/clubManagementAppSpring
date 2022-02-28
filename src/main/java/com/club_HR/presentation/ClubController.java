@@ -6,11 +6,15 @@ import com.club_HR.business.IMemberService;
 import com.club_HR.business.dto.CellDto;
 import com.club_HR.business.dto.MemberDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +26,6 @@ public class ClubController {
     IMemberService iMemberService;
     ICellService iCellService;
 
-    @Autowired
     public ClubController(IMemberService iMemberService, ICellService iCellService) {
         this.iMemberService = iMemberService;
         this.iCellService = iCellService;
@@ -41,6 +44,11 @@ public class ClubController {
     public String listAllMembers(Model model) {
         model.addAttribute("members", iMemberService.getAllMembers());
         return "allMembersDashPage";
+    }
+    @GetMapping("/allMembersJson")
+    public ResponseEntity<List<MemberDto>> listAllMembersJson() {
+        List<MemberDto> listAllMembers= iMemberService.getAllMembers();
+        return new ResponseEntity<List<MemberDto>>(listAllMembers, HttpStatus.FOUND);
     }
 
     @GetMapping("/allCells")
@@ -62,14 +70,20 @@ public class ClubController {
     }
 
     @GetMapping("/addCell")
-    public String addCell() {
+    public String addCell(Model model) {
+        model.addAttribute("cell", new CellDto());
         return "addCellDashPage";
     }
 
     @PostMapping("/addCell")
-    public String addCell(@ModelAttribute(name = "cell") CellDto cell) {
-        iCellService.addCell(cell);
-        return "redirect:allCells";
+    public String addCell(@Valid @ModelAttribute(name = "cell") CellDto cell,
+            BindingResult BindingResult) {
+        if (BindingResult.hasErrors()){
+            return "addCellDashPage";
+        }else{
+            iCellService.addCell(cell);
+            return "redirect:allCells";
+        }
     }
 
     @GetMapping("/profileMember")
@@ -101,13 +115,13 @@ public class ClubController {
     }
 
     @GetMapping("/sendEmail")
-    public String sendEmail(String cellRef, String email, Model model){
-//        List<String> listMails = new ArrayList<>();
-//        for (MemberDto member : iCellService.getCellByCellRef(cellRef).getMemberDtoList()) {
-//            listMails.add(member.getEmail());
-//        }
-//        model.addAttribute("senderMail", email);
-//        model.addAttribute("listMails", listMails);
+    public String sendEmail(String cellRef, Model model){
+        List<String> listEmails = new ArrayList<>();
+        for (MemberDto member : iCellService.getCellByCellRef(cellRef).getMemberDtoList()) {
+            listEmails.add(member.getEmail());
+        }
+        model.addAttribute("listMails", listEmails);
+
         return "sendEmailDashPage";
     }
 
@@ -128,7 +142,7 @@ public class ClubController {
     }
 
     @RequestMapping("/deleteCell")
-    public String deleteCell(String cellRef) {
+    public String deleteCell(@RequestParam(value = "cellRef") String cellRef){
         iCellService.removeCellByCellRef(cellRef);
         return "redirect:allCells";
     }
@@ -153,7 +167,7 @@ public class ClubController {
         return "updateCellDashPage";
     }
 
-    @PostMapping("/updateCell")
+    @RequestMapping("/updateCell")
     public String updateCell(@ModelAttribute(name = "cell") CellDto cell) {
         iCellService.updateCell(cell);
         return "redirect:allCells";

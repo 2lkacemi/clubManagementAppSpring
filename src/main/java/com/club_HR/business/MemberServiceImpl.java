@@ -1,22 +1,19 @@
 package com.club_HR.business;
 
-import com.club_HR.business.dto.CellDto;
 import com.club_HR.persistence.IMemberDao;
 import com.club_HR.business.dto.MemberDto;
-
-import com.club_HR.persistence.entity.CellEntity;
 import com.club_HR.persistence.mapper.MemberMapper;
 import com.club_HR.persistence.entity.MemberEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 
 @Service
-public class MemberServiceImpl implements IMemberService {//on va faire le couplage faible avec la couche dao --> la couche metier va faire appel � la couche dao
-    // pour faire l'injection de dependance  --> on va demander a spring d'injecter une implementation de cette interface
+public class MemberServiceImpl implements IMemberService {
 
     final private IMemberDao iMemberDao;
     final private MemberMapper memberMapper;
@@ -27,17 +24,30 @@ public class MemberServiceImpl implements IMemberService {//on va faire le coupl
         this.memberMapper = memberMapper;
     }
 
+    /**
+     * add member
+     * @param memberDto parameter
+     * @return member added
+     */
     @Override
     public MemberDto addMember(MemberDto memberDto) {
         this.iMemberDao.save(memberMapper.mapToMemberEntity(memberDto));
         return memberDto;
     }
 
+    /**
+     * update a member
+     * @param member parameter
+     */
     @Override
     public void updateMember(MemberDto member){
         iMemberDao.save(memberMapper.mapToMemberEntity(member));
     }
 
+    /**
+     * list all members
+     * @return list of all members
+     */
     @Override
     public List<MemberDto> getAllMembers() {
         List<MemberEntity> memberEntitiesList = iMemberDao.findAll();
@@ -48,6 +58,11 @@ public class MemberServiceImpl implements IMemberService {//on va faire le coupl
                 .collect(Collectors.toList());
     }
 
+    /**
+     * get member using email
+     * @param email parameter
+     * @return a member if it exists
+     */
     @Override
     public MemberDto getMemberByEmail(String email) {
        return iMemberDao.findMemberEntityByEmail(email)
@@ -55,6 +70,11 @@ public class MemberServiceImpl implements IMemberService {//on va faire le coupl
                .orElse(null);
     }
 
+    /**
+     * remove member using email
+     * @param email parameter
+     */
+    @Transactional(readOnly = false)
     @Override
     public void removeMemberByEmail(String email) {
             iMemberDao.deleteByEmail(email);

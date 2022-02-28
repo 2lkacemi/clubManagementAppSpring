@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +18,15 @@ public class MemberEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotEmpty(message = "member's first name cannot be empty.")
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
+    @NotEmpty(message = "member's last name cannot be empty.")
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @NotEmpty(message = "member's email cannot be empty.")
     @Column(name = "member_email", nullable = false)
     private String email;
 

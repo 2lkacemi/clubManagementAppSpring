@@ -21,8 +21,8 @@ public class CellMapper {
 
     /**
      * method which convert a dto to an entity
-     * @param cellDto
-     * @return
+     * @param cellDto parameter
+     * @return this return cellEntity
      */
     public CellEntity mapToCellEntity(CellDto cellDto){
         CellEntity cellEntity = new CellEntity();
@@ -42,8 +42,8 @@ public class CellMapper {
 
     /**
      * method which convert an entity to a dto
-     * @param cellEntity
-     * @return
+     * @param cellEntity parameter
+     * @return cellDto
      */
     public CellDto mapToCellDto(CellEntity cellEntity){
         CellDto cellDto = new CellDto();

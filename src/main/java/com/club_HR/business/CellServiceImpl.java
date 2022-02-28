@@ -31,23 +31,40 @@ public class CellServiceImpl implements ICellService{
         this.cellMapper = cellMapper;
     }
 
+    /**
+     * add a cell
+     * @param cellDto parameter
+     */
     @Override
     public void addCell(CellDto cellDto) {
         cellDto.setCellRef("code_" + cellDto.getCellName().substring(0,4));
         this.iCellDao.save(cellMapper.mapToCellEntity(cellDto));
     }
 
+    /**
+     * update a cell
+     * @param cell parameter
+     */
     @Override
-    public void updateCell(CellDto cell){
-            CellEntity cellEntity = cellMapper.mapToCellEntity(cell);
+    public CellDto updateCell(CellDto cell){
+        CellEntity cellEntity = cellMapper.mapToCellEntity(cell);
         iCellDao.save(cellEntity);
+        return cell;
     }
 
+    /**
+     * remove a cell using cellRef
+     * @param cellRef parameter
+     */
     @Override
     public void removeCellByCellRef(String cellRef) {
         iCellDao.deleteByCellRef(cellRef);
     }
 
+    /**
+     * get a list of all cells
+     * @return a list of cells
+     */
     @Override
     public List<CellDto> getAllCells() {
         List<CellEntity> cellEntitiesList = iCellDao.findAll();
@@ -58,6 +75,11 @@ public class CellServiceImpl implements ICellService{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * add a member to a cell
+     * @param email first param
+     * @param cellRef second param
+     */
     @Override
     public void addMemberToCell(String email, String cellRef) {
         //recuperer le membre avec id == id
@@ -70,16 +92,31 @@ public class CellServiceImpl implements ICellService{
         }
     }
 
+    /**
+     * get a cell by a cellRef
+     * @param cellRef parameter
+     * @return cell
+     */
     @Override
     public CellDto getCellByCellRef(String cellRef) {
         return iCellDao.findByCellRef(cellRef) != null ? cellMapper.mapToCellDto(iCellDao.findByCellRef(cellRef)) : null;
     }
 
+    /**
+     * get a cell by id
+     * @param id param
+     * @return cell
+     */
     @Override
     public CellDto getCellById(Long id) {
         return iCellDao.findById(id).isPresent() ? cellMapper.mapToCellDto(iCellDao.findById(id).get()) : null;
     }
 
+    /**
+     * remove member from a cell
+     * @param email first param
+     * @param cellRef second para
+     */
     @Override
     public void removeMemberFromCell(String email, String cellRef) {
         //recuperer le membre avec id == id
